@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Funky Quiz</title>
+    <link rel="stylesheet" href="./assets/style.css" />
+  </head>
+  <body>
+    <div id="container">
+      <header>
+        <button id="highScore" data-states="[0,2]">High Score</button>
+        <p id="timer" data-states="[0,1]"></p>
+      </header>
+      <main>
+        <section id="screen0" data-states="[0]">
+          <h1>QuizTitle</h1>
+          <button>Start the Quiz</button>
+        </section>
+        <section id="screen1" class="hide" data-states="[1]">
+          <h2>Screen 1</h2>
+          <h3 id="question">What is the question?</h3>
+          <ul is="possibleAnswers"></ul>
+          <button>Next question</button>
+        </section>
+        <section id="screen2" class="hide" data-states="[2]">
+          <h2>Screen 2</h2>
+          <button>Start Over</button>
+        </section>
+      </main>
+    </div>
+    <script src="./assets/script.js"></script>
+  </body>
+</html>
