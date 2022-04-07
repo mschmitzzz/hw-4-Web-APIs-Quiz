@@ -13,12 +13,12 @@ var hideClass = "hide";
 var questions = [
     {
         question: "George Clinton is the front-man for which of funk music's most influential bands?",
-        answers: ["Parliament", "Funkadelic", "Parliament-Funkadelic", "Al of the above"],
+        answers: ["Parliament", "Funkadelic", "Parliament-Funkadelic", "All of the above"],
         answer: 3
     },
     {
         question: "Bootsy Collins was the bass player for which iconic funk band?",
-        answers: ["James Brown", "Parliament-Funkadelic", "Both"]
+        answers: ["James Brown", "Parliament-Funkadelic", "Both"],
         answer: 0
     }
 ];
