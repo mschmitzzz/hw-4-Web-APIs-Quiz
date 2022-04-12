@@ -1,3 +1,4 @@
+// identify HTML elements that will be needed
 var screen0El = document.querySelector("#screen0");
 var screen0ButtonEl = screen0El.querySelector("button");
 var screen1El = document.querySelector("#screen1");
@@ -9,8 +10,10 @@ var timerEl = document.querySelector("#timer");
 var questionEl = document.querySelector("#question");
 var answersEl = document.querySelector("#possibleAnswers");
 
+// creates ability to toggle screens
 var hideClass = "hide";
 
+//array of all 10 quiz questions
 var questions = [
     {
         question: "George Clinton is the front-man for which of funk music's most influential bands?",
@@ -63,6 +66,7 @@ var questions = [
         answer: 3
     }
 ];
+// sets starting question to the first item of the array
 var currentQuestion = 0;
 
 var dynamicElements = [
@@ -97,6 +101,25 @@ function setState(state) {
     });
 }
 
+// Timer that counts down from 100
+function runTimer() {
+    var timeLeft = 100;
+      var timeInterval = setInterval(function () {
+      if (timeLeft > 1) {
+        timerEl.textContent = timeLeft + ' seconds remaining';
+        timeLeft--;
+      } else if (timeLeft === 1) {
+        timerEl.textContent = timeLeft + ' second remaining';
+        timeLeft--;
+      } else {
+        timerEl.textContent = '';
+        clearInterval(timeInterval);
+        setState(0);
+      }
+    }, 1000);
+  }
+
+
 function populateQuestion() {
     var questionObj = questions[currentQuestion];
     // Remove the current list items
@@ -117,6 +140,7 @@ function populateQuestion() {
 function setEventListeners() {
     screen0ButtonEl.addEventListener("click", function () {
         setState(1);
+        runTimer();
     });
     screen1ButtonEl.addEventListener("click", function () {
         setState(2);
@@ -126,9 +150,12 @@ function setEventListeners() {
     });
     answersEl.addEventListener("click", function (evt) {
         var target = evt.target;
-        if (target.matches("li")) {
-          window.alert(target.innerText);
-        }
+        // if (target.matches("li")) {
+        //   window.alert(target.innerText);
+        if (target.matches(questions[currentQuestion].answer)) {
+            window.alert("correct");
+        } else
+        window.alert("wrong")
     });
 }
 
