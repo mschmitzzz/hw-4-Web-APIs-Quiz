@@ -82,13 +82,7 @@ function init() {
 }
 
 function setState(state) {
-    switch (state) {
-        case 1:
-            populateQuestion();
-            break;
-        default:
-            break;
-    }
+    populateQuestion();
 
     dynamicElements.forEach(function (ele) {
         var possibleStatesAttr = ele.getAttribute("data-states");
@@ -121,7 +115,13 @@ function runTimer() {
 
 
 function populateQuestion() {
+    if (currentQuestion === questions.length - 1) {
+        return;
+    } else {
+        currentQuestion += 1;
+    }
     var questionObj = questions[currentQuestion];
+    console.log(questionObj.question);
     // Remove the current list items
     answersEl.innerHTML = "";
     questionEl.textContent = questionObj.question;
@@ -130,11 +130,7 @@ function populateQuestion() {
         li.textContent = question;
         answersEl.appendChild(li);
     });
-    if (currentQuestion === questions.length - 1) {
-        currentQuestion = 0;
-    } else {
-        currentQuestion++;
-    }
+    
 }
 
 function setEventListeners() {
@@ -143,7 +139,7 @@ function setEventListeners() {
         runTimer();
     });
     screen1ButtonEl.addEventListener("click", function () {
-        setState(2);
+        setState(1);
     });
     screen2ButtonEl.addEventListener("click", function () {
         setState(0);
