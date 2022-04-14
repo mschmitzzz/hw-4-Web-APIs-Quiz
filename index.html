@@ -14,17 +14,17 @@
         <p id="timer" data-states="[0,1]">Time Left</p>
       </header>
       <main>
-        <section id="screen0" data-states="[0]">
+        <section id="screen0" class="container" data-states="[0]">
           <h1>The History of Funk Quiz Challenge</h1>
           <button>Start the Quiz</button>
         </section>
-        <section id="screen1" class="hide" data-states="[1]">
-          <h2>Question 1</h2>
+        <section id="screen1" class="hide container" data-states="[1]">
+          <h2>Question</h2>
           <h3 id="question">What is the question?</h3>
           <ul id="possibleAnswers"></ul>
           <button>Go to State 2</button>
         </section>
-        <section id="screen2" class="hide" data-states="[2]">
+        <section id="screen2" class="hide container" data-states="[2]">
           <h2>All Done!</h2>
           <p>Final Score:</p>
           <form>
@@ -45,6 +45,10 @@
             </div>
           </form>
           <button>Start Over</button>
+        </section>
+        <section id="screen3" class="hide container" data-states="[3]">
+          <h2>High Scores</h2>
+          <ol></ol>
         </section>
       </main>
     </div>

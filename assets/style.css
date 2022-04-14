@@ -1,5 +1,32 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --hue-neutral: 200;
+  --hue-wrong: 0;
+  --hue-correct: 145;
+}
+
 body {
+  --hue: var(--hue-neutral);
   font-family: sans-serif;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-color: hsl(var(--hue), 100%, 20%);
+}
+
+body.correct {
+  --hue: var(--hue-correct);
+}
+
+body.wrong {
+  --hue: var(--hue-wrong);
 }
 
 header {
@@ -10,7 +37,7 @@ header {
 
 header p {
   margin: 0;
-  padding: 0;
+  padding-right: 10px;
   flex: 1;
   text-align: right;
 }
@@ -25,8 +52,17 @@ section {
   min-height: 100px;
   margin-bottom: 20px;
   padding: 10px;
+  width: 800px;
+  max-width: 80%;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 30px 2px;
 }
 
-.hide {
-  display: none;
+#possibleAnswers {
+  background-color:blueviolet;
 }
+
+/* .hide {
+  display: none;
+} */
