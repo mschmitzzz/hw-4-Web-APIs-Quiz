@@ -59,10 +59,13 @@ section {
   box-shadow: 0 0 30px 2px;
 }
 
-#possibleAnswers {
+#possibleAnswers.li:hover {
   background-color:blueviolet;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 10px;
 }
 
-/* .hide {
+.hide {
   display: none;
-} */
+}

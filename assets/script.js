@@ -66,6 +66,7 @@ var questions = [
         answer: 3
     }
 ];
+
 // sets starting question to the first item of the array
 var currentQuestion = 0;
 
@@ -97,7 +98,7 @@ function setState(state) {
 
 // Timer that counts down from 100
 function runTimer() {
-    var timeLeft = 100;
+    var timeLeft = 10;
       var timeInterval = setInterval(function () {
       if (timeLeft > 1) {
         timerEl.textContent = timeLeft + ' seconds remaining';
@@ -123,13 +124,28 @@ function populateQuestion() {
     var questionObj = questions[currentQuestion];
     console.log(questionObj.question);
     // Remove the current list items
-    answersEl.innerHTML = "";
+    answersEl.innerHTML = "<ul></ul>";
+    // Show question and possible answers
     questionEl.textContent = questionObj.question;
-    questionObj.answers.forEach(function (question) {
+    questionObj.answers.forEach(function (answer) {
         var li = document.createElement("li");
-        li.textContent = question;
+        li.textContent = answer;
+            li.addEventListener("click", function (evt) {
+       
+            var target = evt.target.value;
+            console.log(target)
+            // if (target.matches("li")) {
+            //   window.alert(target.innerText);
+            console.log(questions[currentQuestion].answer)
+            if (target == questions[currentQuestion].answer) {
+                window.alert("correct");
+            } else
+            window.alert("wrong")
+        });
         answersEl.appendChild(li);
     });
+   
+    console.log(answersEl)
     
 }
 
@@ -144,15 +160,18 @@ function setEventListeners() {
     screen2ButtonEl.addEventListener("click", function () {
         setState(0);
     });
-    answersEl.addEventListener("click", function (evt) {
-        var target = evt.target;
+    /* answersEl.addEventListener("click", function (evt) {
+       
+        var target = evt.target.value;
+        console.log(target)
         // if (target.matches("li")) {
         //   window.alert(target.innerText);
-        if (target.matches(questions[currentQuestion].answer)) {
+        console.log(questions[currentQuestion].answer)
+        if (target == questions[currentQuestion].answer) {
             window.alert("correct");
         } else
         window.alert("wrong")
-    });
+    });*/
 }
 
 init();
