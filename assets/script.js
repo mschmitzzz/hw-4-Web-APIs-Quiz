@@ -68,7 +68,7 @@ var questions = [
 ];
 
 // sets starting question to the first item of the array
-var currentQuestion = 0;
+var currentQuestion = -1;
 
 var dynamicElements = [
     screen0El,
@@ -130,14 +130,14 @@ function populateQuestion() {
     questionObj.answers.forEach(function (answer) {
         var li = document.createElement("li");
         li.textContent = answer;
-            li.addEventListener("click", function (evt) {
-       
-            var target = evt.target.value;
-            console.log(target)
+            li.addEventListener("click", function () {
+       console.log(answer)
+            
             // if (target.matches("li")) {
             //   window.alert(target.innerText);
-            console.log(questions[currentQuestion].answer)
-            if (target == questions[currentQuestion].answer) {
+            var rightAnswer = questions[currentQuestion].answer
+            var selectedAnswer = questionObj.answers.indexOf(answer)
+            if (selectedAnswer == rightAnswer) {
                 window.alert("correct");
             } else
             window.alert("wrong")
