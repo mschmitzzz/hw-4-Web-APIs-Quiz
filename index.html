@@ -4,54 +4,26 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Funky Quiz</title>
-    <link rel="stylesheet" href="./assets/style.css" />
+    <link href="./assets/style.css" rel="stylesheet" />
+    <script defer src="/assets/script.js"></script>
+    <title>Funk History Quiz</title>
   </head>
   <body>
-    <div id="container">
-      <header>
-        <button id="highScore" data-states="[0,2]">High Score</button>
-        <p id="timer" data-states="[0,1]">Time Left</p>
-      </header>
-      <main>
-        <section id="screen0" class="container" data-states="[0]">
-          <h1>The History of Funk Quiz Challenge</h1>
-          <button>Start the Quiz</button>
-        </section>
-        <section id="screen1" class="hide container" data-states="[1]">
-          <h2>Question</h2>
-          <h3 id="question">What is the question?</h3>
-          <ul id="possibleAnswers"></ul>
-          <button>Go to State 2</button>
-        </section>
-        <section id="screen2" class="hide container" data-states="[2]">
-          <h2>All Done!</h2>
-          <p>Final Score:</p>
-          <form>
-            <div>
-              <label for="initials">Enter Initials:</label>
-              <input
-                type="text"
-                id="initials"
-                name="initials"
-                placeholder="Initials"
-              />
-            </div>
-            <div>
-              <input type="reset" />
-            </div>
-            <div>
-              <input type="submit" />
-            </div>
-          </form>
-          <button>Start Over</button>
-        </section>
-        <section id="screen3" class="hide container" data-states="[3]">
-          <h2>High Scores</h2>
-          <ol></ol>
-        </section>
-      </main>
+    <div class="container">
+      <h1 id="title">The History of Funk Quiz</h1>
+      <div id="question-container" class="hide">
+        <div id="question">Question</div>
+        <div id="answer-buttons" class="btn-grid">
+          <button class="btn">Answer 1</button>
+          <button class="btn">Answer 2</button>
+          <button class="btn">Answer 3</button>
+          <button class="btn">Answer 4</button>
+        </div>
+      </div>
+      <div class="controls">
+        <button id="start-btn" class="start-btn btn">Start</button>
+        <button id="next-btn" class="next-btn btn hide">Next</button>
+      </div>
     </div>
-    <script src="./assets/script.js"></script>
   </body>
 </html>

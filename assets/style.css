@@ -1,5 +1,6 @@
-* {
+*, *::before, *::after {
   box-sizing: border-box;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 :root {
@@ -10,15 +11,19 @@
 
 body {
   --hue: var(--hue-neutral);
-  font-family: sans-serif;
   padding: 0;
   margin: 0;
   display: flex;
   width: 100vw;
-  height: 100vh;
+  height: 100vw;
   justify-content: center;
-  align-items: center;
+  align-items:center;
   background-color: hsl(var(--hue), 100%, 20%);
+}
+
+#title {
+  text-align: center;
+  padding: 0px 0px 25px 0px;
 }
 
 body.correct {
@@ -29,41 +34,54 @@ body.wrong {
   --hue: var(--hue-wrong);
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-header p {
-  margin: 0;
-  padding-right: 10px;
-  flex: 1;
-  text-align: right;
-}
-
-header button {
-  padding: 10px;
-}
-
-section {
-  display: block;
-  border: 1px solid black;
-  min-height: 100px;
-  margin-bottom: 20px;
-  padding: 10px;
+.container {
   width: 800px;
   max-width: 80%;
   background-color: white;
   border-radius: 10px;
-  box-shadow: 0 0 30px 2px;
+  padding: 10px;
+  box-shadow: 0 0 100px 2px;
 }
 
-#possibleAnswers.li:hover {
-  background-color:blueviolet;
-  border: 1px solid black;
-  border-radius: 20px;
-  padding: 10px;
+.btn-grid {
+  display: grid;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.btn {
+  --hue: var(--hue-neutral);
+  border: 2px solid hsl(var(--hue), 100%, 30%);
+  background-color: hsl(var(--hue), 100%, 50%);
+  border-radius: 5px;
+  padding: 5px 10px;
+  color: white; 
+  outline: none;
+}
+
+.btn:hover {
+  border-color: black;
+}
+
+.btn.correct {
+  --hue: var(--hue-correct);
+  color: black;
+}
+
+.btn.wrong {
+  --hue: var(--hue-wrong);
+}
+
+.start-btn, .next-btn {
+  font-size: 1.5 rem;
+  font-weight: bold;
+  padding: 10px 20px;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .hide {
