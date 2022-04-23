@@ -11,7 +11,7 @@
   <body>
     <header>
       <header>
-        <button id="highScore" data-states="[0,2]">High Score</button>
+        <button id="view-scores" data-states="[0,2]">High Score</button>
         <h1 id="title">The History of Funk Quiz</h1>
         <p id="timer" data-states="[0,1]">Time Left</p>
       </header>
@@ -31,5 +31,49 @@
         <button id="next-btn" class="next-btn btn hide">Next</button>
       </div>
     </div>
+    <section id="final">
+      <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+          <h2>All done!</h2>
+          <p>Your final score is: <span id="score" class="pl-1">0</span></p>
+          <!-- <p class="score">Your final score is: </p> -->
+          <p>
+            Enter initials:
+            <span class="ml-1"
+              ><input placeholder="initials" id="initials"
+            /></span>
+            <button
+              id="submit-score"
+              class="btn btn-success mx-1 my-1 d-inline-block"
+            >
+              Submit
+            </button>
+          </p>
+        </div>
+      </div>
+    </section>
+    <!-- Section for High Scores -->
+    <section id="highscores">
+      <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+          <h2>High Scores</h2>
+          <!-- High scores should be added as a sorted desc list -->
+          <ol id="score-list">
+            <!-- <li></li> -->
+          </ol>
+          <button id="goback" class="btn btn-success d-inline-block mx-1 my-1">
+            Go back
+          </button>
+          <button
+            id="clearscores"
+            class="btn btn-success mx-1 my-1 d-inline-block"
+          >
+            Clear scores
+          </button>
+        </div>
+      </div>
+    </section>
   </body>
 </html>

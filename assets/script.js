@@ -3,13 +3,57 @@ var nextButtonEl = document.getElementById("next-btn");
 var questionContainerEl = document.getElementById("question-container");
 var questionEl = document.getElementById("question");
 var answerButtonsEl = document.getElementById("answer-buttons");
+var timerEl = document.getElementById("timer");
+var finalEl = document.getElementById("final");
+var scoreEl = document.getElementById("score");
 
 var shuffledQuestions, currentQuestionIndex
+
+// section highscores
+var highscoresEl = document.querySelector("#highscores");
+// ordered list
+var scoreListEl = document.querySelector("#score-list");
+// array of scores
+var scoreList = [];
+
+// submit-score
+var submitScrBtn = document.querySelector("#submit-score");
+// goback
+var goBackBtn = document.querySelector("#goback");
+// clearscores
+var clearScrBtn = document.querySelector("#clearscores");
+// view-scores
+var viewScrBtn = document.querySelector("#view-scores");
+
+// user initials
+var initialsInput = document.querySelector("#initials");
+
 
 startButtonEl.addEventListener("click", startGame);
 nextButtonEl.addEventListener("click", function() {
     currentQuestionIndex++;
     setNextQuestion();
+});
+submitScrBtn.addEventListener("click", addScore);
+clearScrBtn.addEventListener("click", clearScores);
+// View/Hide High Scores Button
+viewScrBtn.addEventListener("click", function () {
+    if (highscoresEl.style.display === "none") {
+        highscoresEl.style.display = "block";
+    } else if (highscoresEl.style.display === "block") {
+        highscoresEl.style.display = "none";
+    } else {
+        return alert("No scores to show.");
+    }
+});
+
+// Go Back Button
+goBackBtn.addEventListener("click", function () {
+    highscoresEl.style.display = "none";
+    startButtonEl.classList.remove("hide");
+    questionContainerEl.classList.add("hide");
+    timeLeft = 75;
+    timerEl.textContent = `Time:${timeLeft}s`;
 });
 
 //loads the question container
@@ -20,6 +64,7 @@ function startGame() {
     currentQuestionIndex = 0;
     questionContainerEl.classList.remove("hide");
     setNextQuestion();
+    runTimer();
 };
 
 function setNextQuestion() {
@@ -62,7 +107,6 @@ function selectAnswer() {
         startButtonEl.innerText = "Restart";
         startButtonEl.classList.remove("hide");
     }
-    
 };
 
 function setStatusClass(element, correct) {
@@ -79,6 +123,76 @@ function clearStatusClass(element) {
     element.classList.remove("wrong");
 };
 
+// Timer that counts down from 100
+var timeLeft = 75;
+function runTimer() {
+      var timeInterval = setInterval(function () {
+      if (timeLeft > 1) {
+        timerEl.textContent = timeLeft + ' seconds remaining';
+        timeLeft--;
+      } else if (timeLeft === 1) {
+        timerEl.textContent = timeLeft + ' second remaining';
+        timeLeft--;
+      } else if (timeLeft === 0 || currentQuestionIndex === questions.length) {
+        clearInterval(timeInterval);
+        questionContainerEl.style.display = "none";
+        finalEl.style.display = "block";
+        scoreEl.textContent = timeLeft;
+      }
+    }, 1000);
+  }
+
+  function addScore(event) {
+    event.preventDefault();
+
+    finalEl.style.display = "none";
+    highscoresEl.style.display = "block";
+
+    var init = initialsInput.value.toUpperCase();
+    scoreList.push({ initials: init, score: timeLeft});
+
+    // sort scores
+    scoreList = scoreList.sort((a, b) => {
+        if (a.score < b.score) {
+          return 1;
+        } else {
+          return -1;
+        }
+      });
+    
+    scoreListEl.innerHTML="";
+    for (let i = 0; i < scoreList.length; i++) {
+        let li = document.createElement("li");
+        li.textContent = `${scoreList[i].initials}: ${scoreList[i].score}`;
+        scoreListEl.append(li);
+    }
+
+    // Add to local storage
+    storeScores();
+    displayScores();
+}
+
+function storeScores() {
+   localStorage.setItem("scoreList", JSON.stringify(scoreList));
+}
+
+function displayScores() {
+   // Get stored scores from localStorage
+   // Parsing the JSON string to an object
+   let storedScoreList = JSON.parse(localStorage.getItem("scoreList"));
+
+   // If scores were retrieved from localStorage, update the scorelist array to it
+   if (storedScoreList !== null) {
+       scoreList = storedScoreList;
+   }
+}
+
+// clear scores
+function clearScores() {
+   localStorage.clear();
+   scoreListEl.innerHTML="";
+}
+
 //array of all 10 quiz questions
 var questions = [
     {
@@ -91,12 +205,12 @@ var questions = [
         ]
     },
     {
-        question: "Bootsy Collins was the bass player for which iconic funk band?",
+        question: "Bootsy Collins was the bass player for which iconic funk band(s)?",
         answers: [
-            {text: "James Brown", correct: true},
+            {text: "James Brown", correct: false},
             {text: "Parliament-Funkadelic", correct: false},
             {text: "Sly & The Family Stone", correct: false},
-            {text: "James Brown and Parliament Funkadelic", correct: false}
+            {text: "James Brown and Parliament Funkadelic", correct: true}
         ]
     },
     {
