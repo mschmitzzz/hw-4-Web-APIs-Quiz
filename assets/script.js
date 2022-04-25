@@ -102,10 +102,13 @@ function selectAnswer() {
         setStatusClass(button, button.dataset.correct);
     });
     if(shuffledQuestions.length > currentQuestionIndex +1) {
-        nextButtonEl.classList.remove("hide");
+        // nextButtonEl.classList.remove("hide");
+        currentQuestionIndex++;
+        setTimeout(setNextQuestion, 1000);
     } else {
         startButtonEl.innerText = "Restart";
         startButtonEl.classList.remove("hide");
+        finalEl.classList.remove("hide");
     }
 };
 
@@ -123,7 +126,7 @@ function clearStatusClass(element) {
     element.classList.remove("wrong");
 };
 
-// Timer that counts down from 100
+// Timer that counts down from 75
 var timeLeft = 75;
 function runTimer() {
       var timeInterval = setInterval(function () {
@@ -133,10 +136,10 @@ function runTimer() {
       } else if (timeLeft === 1) {
         timerEl.textContent = timeLeft + ' second remaining';
         timeLeft--;
-      } else if (timeLeft === 0 || currentQuestionIndex === questions.length) {
+      } else {
         clearInterval(timeInterval);
-        questionContainerEl.style.display = "none";
-        finalEl.style.display = "block";
+        questionContainerEl.classList.add("hide");
+        finalEl.classList.remove("hide");
         scoreEl.textContent = timeLeft;
       }
     }, 1000);
@@ -145,8 +148,8 @@ function runTimer() {
   function addScore(event) {
     event.preventDefault();
 
-    finalEl.style.display = "none";
-    highscoresEl.style.display = "block";
+    finalEl.classList.add = "hide";
+    highscoresEl.classList.remove = "hide";
 
     var init = initialsInput.value.toUpperCase();
     scoreList.push({ initials: init, score: timeLeft});
