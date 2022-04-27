@@ -108,6 +108,7 @@ function selectAnswer() {
     } else {
         startButtonEl.innerText = "Restart";
         startButtonEl.classList.remove("hide");
+        scoreEl.innerText = timeLeft;
         finalEl.classList.remove("hide");
     }
 };

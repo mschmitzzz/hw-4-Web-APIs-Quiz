@@ -32,6 +32,15 @@ header button {
   outline: none;
 }
 
+#timer {
+  display: flex;
+  padding: 10px;
+  border: 2px solid;
+  background-color: hsl(177, 69%, 52%);
+  border-radius: 5px;
+  outline: none;
+}
+
 body {
   --hue: var(--hue-neutral);
   padding: 0;
